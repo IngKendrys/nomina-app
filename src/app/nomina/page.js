@@ -2,7 +2,7 @@ export default function NominaPage({empleados, recargos}) {
   const calcularNomina = () => {
     return empleados?.map(emp => {
       const recargosEmpleado = recargos?.filter(r => r.empleado_id === emp.id);
-      const totalRecargos = recargosEmpleado.reduce((sum, r) => sum + parseFloat(r.valor_calculado), 0);
+      const totalRecargos = recargosEmpleado?.reduce((sum, r) => sum + parseFloat(r.valor_calculado), 0);
       return {
         ...emp,
         total_recargos: totalRecargos,

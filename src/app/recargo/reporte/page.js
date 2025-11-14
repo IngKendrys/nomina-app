@@ -63,19 +63,19 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
   const totales = {
     nombre: 'TOTAL',
     cedula: '',
-    horasDiurno: tableData.reduce((s, r) => s + parseFloat(r.horasDiurno || 0), 0).toFixed(2),
-    recargoDiurno: tableData.reduce((s, r) => s + parseFloat(r.recargoDiurno || 0), 0).toFixed(0),
-    horasNocturno: tableData.reduce((s, r) => s + parseFloat(r.horasNocturno || 0), 0).toFixed(2),
-    recargoNocturno: tableData.reduce((s, r) => s + parseFloat(r.recargoNocturno || 0), 0).toFixed(0),
-    horasDominical: tableData.reduce((s, r) => s + parseFloat(r.horasDominical || 0), 0).toFixed(2),
-    recargoDominical: tableData.reduce((s, r) => s + parseFloat(r.recargoDominical || 0), 0).toFixed(0),
-    horasNocturnoDominical: tableData.reduce((s, r) => s + parseFloat(r.horasNocturnoDominical || 0), 0).toFixed(2),
-    recargoNocturnoDominical: tableData.reduce((s, r) => s + parseFloat(r.recargoNocturnoDominical || 0), 0).toFixed(0),
-    horasFestivoDiurno: tableData.reduce((s, r) => s + parseFloat(r.horasFestivoDiurno || 0), 0).toFixed(2),
-    recargoFestivoDiurno: tableData.reduce((s, r) => s + parseFloat(r.recargoFestivoDiurno || 0), 0).toFixed(0),
-    horasFestivoNocturno: tableData.reduce((s, r) => s + parseFloat(r.horasFestivoNocturno || 0), 0).toFixed(2),
-    recargoFestivoNocturno: tableData.reduce((s, r) => s + parseFloat(r.recargoFestivoNocturno || 0), 0).toFixed(0),
-    totalRecargos: tableData.reduce((s, r) => s + parseFloat(r.totalRecargos || 0), 0).toFixed(0)
+    horasDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasDiurno || 0), 0).toFixed(2),
+    recargoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoDiurno || 0), 0).toFixed(0),
+    horasNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturno || 0), 0).toFixed(2),
+    recargoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturno || 0), 0).toFixed(0),
+    horasDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasDominical || 0), 0).toFixed(2),
+    recargoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoDominical || 0), 0).toFixed(0),
+    horasNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturnoDominical || 0), 0).toFixed(2),
+    recargoNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturnoDominical || 0), 0).toFixed(0),
+    horasFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoDiurno || 0), 0).toFixed(2),
+    recargoFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoDiurno || 0), 0).toFixed(0),
+    horasFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoNocturno || 0), 0).toFixed(2),
+    recargoFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoNocturno || 0), 0).toFixed(0),
+    totalRecargos: tableData?.reduce((s, r) => s + parseFloat(r.totalRecargos || 0), 0).toFixed(0)
   };
 
   tableData.push(totales);
@@ -139,7 +139,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
 
     const [year, month] = filtroMes.split('-')?.map(Number);
 
-    return recargos.filter(rec => {
+    return recargos?.filter(rec => {
       const fechaRec = new Date(rec.fecha + 'T00:00:00');
       const diaRec = fechaRec.getDate();
       const mesRec = fechaRec.getMonth() + 1;
@@ -160,7 +160,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
     const recargosFiltrados = filtrarRecargosPorPeriodo();
 
     const reportePorEmpleado = empleados?.map(emp => {
-      const recargosEmp = recargosFiltrados.filter(r => r.empleado_id === emp.id);
+      const recargosEmp = recargosFiltrados?.filter(r => r.empleado_id === emp.id);
 
       const porTipo = {};
       recargosEmp.forEach(rec => {
@@ -176,8 +176,8 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
         porTipo[rec.tipo_recargo].cantidad += 1;
       });
 
-      const horasTotales = recargosEmp.reduce((sum, r) => sum + parseFloat(r.horas), 0);
-      const valorTotal = recargosEmp.reduce((sum, r) => sum + parseFloat(r.valor_calculado), 0);
+      const horasTotales = recargosEmp?.reduce((sum, r) => sum + parseFloat(r.horas), 0);
+      const valorTotal = recargosEmp?.reduce((sum, r) => sum + parseFloat(r.valor_calculado), 0);
 
       return {
         empleado: emp,
@@ -186,7 +186,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
         valorTotal,
         cantidadTurnos: recargosEmp.length
       };
-    }).filter(r => r.cantidadTurnos > 0);
+    })?.filter(r => r.cantidadTurnos > 0);
 
     return reportePorEmpleado;
   };
@@ -253,7 +253,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
             <div className="space-y-6">
               {reporteRecargos?.map(reporte => {
                 const recargosFiltrados = filtrarRecargosPorPeriodo();
-                const recargosEmpleado = recargosFiltrados.filter(r => r.empleado_id === reporte.empleado.id);
+                const recargosEmpleado = recargosFiltrados?.filter(r => r.empleado_id === reporte.empleado.id);
                 const fechasTurnos = [...new Set(recargosEmpleado?.map(r => r.fecha))].sort();
 
                 return (
@@ -323,13 +323,13 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                   <div>
                     <p className="text-green-100 text-sm">Total Horas</p>
                     <p className="text-3xl font-bold">
-                      {reporteRecargos.reduce((sum, r) => sum + r.horasTotales, 0).toFixed(1)}h
+                      {reporteRecargos?.reduce((sum, r) => sum + r.horasTotales, 0).toFixed(1)}h
                     </p>
                   </div>
                   <div>
                     <p className="text-green-100 text-sm">Total Recargos</p>
                     <p className="text-3xl font-bold">
-                      ${reporteRecargos.reduce((sum, r) => sum + r.valorTotal, 0).toLocaleString('es-CO')}
+                      ${reporteRecargos?.reduce((sum, r) => sum + r.valorTotal, 0).toLocaleString('es-CO')}
                     </p>
                   </div>
                 </div>
