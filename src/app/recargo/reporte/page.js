@@ -37,23 +37,23 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
 
     Object.entries(reporte.porTipo).forEach(([tipo, datos]) => {
       if (tipo === 'Diurno') {
-        row.horasDiurno = datos.horas.toFixed(2);
-        row.recargoDiurno = datos.valor.toFixed(0);
+        row.horasDiurno = datos.horas?.toFixed(2);
+        row.recargoDiurno = datos.valor?.toFixed(0);
       } else if (tipo === 'Nocturno') {
-        row.horasNocturno = datos.horas.toFixed(2);
-        row.recargoNocturno = datos.valor.toFixed(0);
+        row.horasNocturno = datos.horas?.toFixed(2);
+        row.recargoNocturno = datos.valor?.toFixed(0);
       } else if (tipo === 'Dominical') {
-        row.horasDominical = datos.horas.toFixed(2);
-        row.recargoDominical = datos.valor.toFixed(0);
+        row.horasDominical = datos.horas?.toFixed(2);
+        row.recargoDominical = datos.valor?.toFixed(0);
       } else if (tipo === 'Nocturno Dominical') {
-        row.horasNocturnoDominical = datos.horas.toFixed(2);
-        row.recargoNocturnoDominical = datos.valor.toFixed(0);
+        row.horasNocturnoDominical = datos.horas?.toFixed(2);
+        row.recargoNocturnoDominical = datos.valor?.toFixed(0);
       } else if (tipo === 'Festivo Diurno') {
-        row.horasFestivoDiurno = datos.horas.toFixed(2);
-        row.recargoFestivoDiurno = datos.valor.toFixed(0);
+        row.horasFestivoDiurno = datos.horas?.toFixed(2);
+        row.recargoFestivoDiurno = datos.valor?.toFixed(0);
       } else if (tipo === 'Festivo Nocturno') {
-        row.horasFestivoNocturno = datos.horas.toFixed(2);
-        row.recargoFestivoNocturno = datos.valor.toFixed(0);
+        row.horasFestivoNocturno = datos.horas?.toFixed(2);
+        row.recargoFestivoNocturno = datos.valor?.toFixed(0);
       }
     });
 
@@ -63,19 +63,19 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
   const totales = {
     nombre: 'TOTAL',
     cedula: '',
-    horasDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasDiurno || 0), 0).toFixed(2),
-    recargoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoDiurno || 0), 0).toFixed(0),
-    horasNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturno || 0), 0).toFixed(2),
-    recargoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturno || 0), 0).toFixed(0),
-    horasDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasDominical || 0), 0).toFixed(2),
-    recargoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoDominical || 0), 0).toFixed(0),
-    horasNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturnoDominical || 0), 0).toFixed(2),
-    recargoNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturnoDominical || 0), 0).toFixed(0),
-    horasFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoDiurno || 0), 0).toFixed(2),
-    recargoFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoDiurno || 0), 0).toFixed(0),
-    horasFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoNocturno || 0), 0).toFixed(2),
-    recargoFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoNocturno || 0), 0).toFixed(0),
-    totalRecargos: tableData?.reduce((s, r) => s + parseFloat(r.totalRecargos || 0), 0).toFixed(0)
+    horasDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasDiurno || 0), 0)?.toFixed(2),
+    recargoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoDiurno || 0), 0)?.toFixed(0),
+    horasNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturno || 0), 0)?.toFixed(2),
+    recargoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturno || 0), 0)?.toFixed(0),
+    horasDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasDominical || 0), 0)?.toFixed(2),
+    recargoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoDominical || 0), 0)?.toFixed(0),
+    horasNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.horasNocturnoDominical || 0), 0)?.toFixed(2),
+    recargoNocturnoDominical: tableData?.reduce((s, r) => s + parseFloat(r.recargoNocturnoDominical || 0), 0)?.toFixed(0),
+    horasFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoDiurno || 0), 0)?.toFixed(2),
+    recargoFestivoDiurno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoDiurno || 0), 0)?.toFixed(0),
+    horasFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.horasFestivoNocturno || 0), 0)?.toFixed(2),
+    recargoFestivoNocturno: tableData?.reduce((s, r) => s + parseFloat(r.recargoFestivoNocturno || 0), 0)?.toFixed(0),
+    totalRecargos: tableData?.reduce((s, r) => s + parseFloat(r?.totalRecargos || 0), 0)?.toFixed(0)
   };
 
   tableData.push(totales);
@@ -103,18 +103,18 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
       row.nombre,
       row.cedula,
       row.horasDiurno ? parseInt(row.horasDiurno) : '-',
-      row.recargoDiurno ? `$${parseInt(row.recargoDiurno).toLocaleString('es-CO')}` : '-',
+      row.recargoDiurno ? `$${parseInt(row.recargoDiurno)?.toLocaleString('es-CO')}` : '-',
       row.horasNocturno ? parseInt(row.horasNocturno) : '-',
-      row.recargoNocturno ? `$${parseInt(row.recargoNocturno).toLocaleString('es-CO')}` : '-',
+      row.recargoNocturno ? `$${parseInt(row.recargoNocturno)?.toLocaleString('es-CO')}` : '-',
       row.horasDominical ? parseInt(row.horasDominical) : '-',
-      row.recargoDominical ? `$${parseInt(row.recargoDominical).toLocaleString('es-CO')}` : '-',
+      row.recargoDominical ? `$${parseInt(row.recargoDominical)?.toLocaleString('es-CO')}` : '-',
       row.horasNocturnoDominical ? parseInt(row.horasNocturnoDominical) : '-',
-      row.recargoNocturnoDominical ? `$${parseInt(row.recargoNocturnoDominical).toLocaleString('es-CO')}` : '-',
+      row.recargoNocturnoDominical ? `$${parseInt(row.recargoNocturnoDominical)?.toLocaleString('es-CO')}` : '-',
       row.horasFestivoDiurno ? parseInt(row.horasFestivoDiurno) : '-',
-      row.recargoFestivoDiurno ? `$${parseInt(row.recargoFestivoDiurno).toLocaleString('es-CO')}` : '-',
+      row.recargoFestivoDiurno ? `$${parseInt(row.recargoFestivoDiurno)?.toLocaleString('es-CO')}` : '-',
       row.horasFestivoNocturno ? parseInt(row.horasFestivoNocturno) : '-',
-      row.recargoFestivoNocturno ? `$${parseInt(row.recargoFestivoNocturno).toLocaleString('es-CO')}` : '-',
-      `$${parseInt(row.totalRecargos).toLocaleString('es-CO')}`
+      row.recargoFestivoNocturno ? `$${parseInt(row.recargoFestivoNocturno)?.toLocaleString('es-CO')}` : '-',
+      `$${parseInt(row?.totalRecargos)?.toLocaleString('es-CO')}`
     ]),
     styles: { fontSize: 7, cellPadding: 2 },
     headStyles: { fillColor: [37, 99, 235], fontSize: 7 },
@@ -269,14 +269,14 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                         </div>
                         <div className="text-right">
                           <p className="text-sm text-blue-100">Total Recargos</p>
-                          <p className="text-2xl font-bold">${reporte.valorTotal.toLocaleString('es-CO')}</p>
+                          <p className="text-2xl font-bold">${reporte.valorTotal?.toLocaleString('es-CO')}</p>
                           <p className="text-xs text-blue-100">{reporte.horasTotales} horas - {reporte.cantidadTurnos} turnos</p>
                         </div>
                       </div>
                     </div>
                     <div className="bg-blue-50 border-b border-blue-100 px-4 py-2">
                       <p className="text-sm text-blue-900">
-                        <strong>📅 Fechas de turnos:</strong> {fechasTurnos?.map(f => new Date(f + 'T00:00:00').toLocaleDateString('es-CO', { day: '2-digit', month: 'short' })).join(', ')}
+                        <strong>📅 Fechas de turnos:</strong> {fechasTurnos?.map(f => new Date(f + 'T00:00:00')?.toLocaleDateString('es-CO', { day: '2-digit', month: 'short' })).join(', ')}
                       </p>
                     </div>
                     <div className="p-4">
@@ -302,7 +302,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                               <div className="flex justify-between text-sm">
                                 <span className="text-gray-600">Valor:</span>
                                 <span className="font-semibold text-green-600">
-                                  ${datos.valor.toLocaleString('es-CO')}
+                                  ${datos.valor?.toLocaleString('es-CO')}
                                 </span>
                               </div>
                             </div>
@@ -323,13 +323,13 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                   <div>
                     <p className="text-green-100 text-sm">Total Horas</p>
                     <p className="text-3xl font-bold">
-                      {reporteRecargos?.reduce((sum, r) => sum + r.horasTotales, 0).toFixed(1)}h
+                      {reporteRecargos?.reduce((sum, r) => sum + r.horasTotales, 0)?.toFixed(1)}h
                     </p>
                   </div>
                   <div>
                     <p className="text-green-100 text-sm">Total Recargos</p>
                     <p className="text-3xl font-bold">
-                      ${reporteRecargos?.reduce((sum, r) => sum + r.valorTotal, 0).toLocaleString('es-CO')}
+                      ${reporteRecargos?.reduce((sum, r) => sum + r.valorTotal, 0)?.toLocaleString('es-CO')}
                     </p>
                   </div>
                 </div>

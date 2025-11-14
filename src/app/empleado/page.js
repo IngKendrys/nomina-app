@@ -207,7 +207,7 @@ export default function EmpleadoPage({loading, empleados, setLoading, cargarEmpl
                       {emp.cargo}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900 font-semibold">
-                      ${parseFloat(emp.salario_base).toLocaleString("es-CO")}
+                      ${parseFloat(emp.salario_base)?.toLocaleString("es-CO")}
                     </td>
                     <td className="px-6 py-4 flex gap-2">
                       <button

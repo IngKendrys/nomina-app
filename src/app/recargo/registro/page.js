@@ -289,7 +289,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
         {previewRecargo && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
             <h4 className="font-semibold text-blue-900 mb-2">
-              Vista Previa del Turno ({previewRecargo.horasTotales.toFixed(2)}{" "}
+              Vista Previa del Turno ({previewRecargo.horasTotales?.toFixed(2)}{" "}
               horas totales)
             </h4>
             <div className="space-y-2">
@@ -300,11 +300,11 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
                 >
                   <span className="text-gray-700">
                     <strong>{detalle.tipo}</strong> ({detalle.porcentaje}%
-                    recargo) - {detalle.horas.toFixed(2)}h
+                    recargo) - {detalle.horas?.toFixed(2)}h
                   </span>
                   <span className="font-semibold text-green-600">
                     $
-                    {detalle.valor.toLocaleString("es-CO", {
+                    {detalle.valor?.toLocaleString("es-CO", {
                       maximumFractionDigits: 0,
                     })}
                   </span>
@@ -314,7 +314,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
                 <span className="font-bold text-blue-900">TOTAL TURNO:</span>
                 <span className="font-bold text-lg text-blue-600">
                   $
-                  {previewRecargo.valorTotal.toLocaleString("es-CO", {
+                  {previewRecargo.valorTotal?.toLocaleString("es-CO", {
                     maximumFractionDigits: 0,
                   })}
                 </span>
@@ -385,10 +385,10 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-900">
-                  {rec.horas.toFixed(2)}h
+                  {rec.horas?.toFixed(2)}h
                 </td>
                 <td className="px-6 py-4 text-sm text-green-600 font-semibold">
-                  ${parseFloat(rec.valor_calculado).toLocaleString("es-CO")}
+                  ${parseFloat(rec.valor_calculado)?.toLocaleString("es-CO")}
                 </td>
                 <td className="px-6 py-4">
                   <button

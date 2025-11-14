@@ -47,13 +47,13 @@ export default function NominaPage({empleados, recargos}) {
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-600">{emp.cargo}</td>
                 <td className="px-6 py-4 text-sm text-gray-900">
-                  ${parseFloat(emp.salario_base).toLocaleString("es-CO")}
+                  ${parseFloat(emp.salario_base)?.toLocaleString("es-CO")}
                 </td>
                 <td className="px-6 py-4 text-sm text-green-600 font-semibold">
-                  ${emp.total_recargos.toLocaleString("es-CO")}
+                  ${emp.total_recargos?.toLocaleString("es-CO")}
                 </td>
                 <td className="px-6 py-4 text-sm text-blue-600 font-bold">
-                  ${emp.total_pagar.toLocaleString("es-CO")}
+                  ${emp.total_pagar?.toLocaleString("es-CO")}
                 </td>
               </tr>
             ))}
@@ -67,7 +67,7 @@ export default function NominaPage({empleados, recargos}) {
                 TOTAL NÓMINA:
               </td>
               <td className="px-6 py-4 text-lg font-bold text-blue-600">
-                ${totalGeneral.toLocaleString("es-CO")}
+                ${totalGeneral?.toLocaleString("es-CO")}
               </td>
             </tr>
           </tfoot>
