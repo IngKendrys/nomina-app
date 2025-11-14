@@ -24,8 +24,8 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
   const getDiaSemana = (fecha) => { return new Date(fecha + "T00:00:00").getDay(); };
 
   const calcularHoras = (horaInicio, horaFin) => {
-    const [hi, mi] = horaInicio.split(":").map(Number);
-    const [hf, mf] = horaFin.split(":").map(Number);
+    const [hi, mi] = horaInicio.split(":")?.map(Number);
+    const [hf, mf] = horaFin.split(":")?.map(Number);
 
     let minutosInicio = hi * 60 + mi;
     let minutosFin = hf * 60 + mf;
@@ -42,8 +42,8 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
     const esDomingo = diaSemana === 0;
     const festivo = esFestivo(fecha);
 
-    const [hi, mi] = horaInicio.split(":").map(Number);
-    const [hf, mf] = horaFin.split(":").map(Number);
+    const [hi, mi] = horaInicio.split(":")?.map(Number);
+    const [hf, mf] = horaFin.split(":")?.map(Number);
 
     let minutosInicio = hi * 60 + mi;
     let minutosFin = hf * 60 + mf;
@@ -168,7 +168,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
       empleado.salario_base
     );
 
-    const inserciones = resultado.detalles.map((detalle) => ({
+    const inserciones = resultado.detalles?.map((detalle) => ({
       empleado_id: nuevoRecargo.empleado_id,
       fecha: nuevoRecargo.fecha,
       tipo_recargo: detalle.tipo,
@@ -249,7 +249,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
             className="border rounded px-3 py-2"
           >
             <option value="">Seleccionar empleado</option>
-            {empleados.map((emp) => (
+            {empleados?.map((emp) => (
               <option key={emp.id} value={emp.id}>
                 {emp.nombre}
               </option>
@@ -293,7 +293,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
               horas totales)
             </h4>
             <div className="space-y-2">
-              {previewRecargo.detalles.map((detalle, idx) => (
+              {previewRecargo.detalles?.map((detalle, idx) => (
                 <div
                   key={idx}
                   className="flex justify-between items-center text-sm"
@@ -361,7 +361,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
             </tr>
           </thead>
           <tbody className="divide-y">
-            {recargos.map((rec) => (
+            {recargos?.map((rec) => (
               <tr key={rec.id}>
                 <td className="px-6 py-4 text-sm text-gray-900">
                   {rec.empleados?.nombre}

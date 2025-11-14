@@ -99,7 +99,7 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
       'Recargos Fest. Noct.',
       'Total Recargos'
     ]],
-    body: tableData.map(row => [
+    body: tableData?.map(row => [
       row.nombre,
       row.cedula,
       row.horasDiurno ? parseInt(row.horasDiurno) : '-',
@@ -137,7 +137,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
   const filtrarRecargosPorPeriodo = () => {
     if (!filtroMes) return recargos;
 
-    const [year, month] = filtroMes.split('-').map(Number);
+    const [year, month] = filtroMes.split('-')?.map(Number);
 
     return recargos.filter(rec => {
       const fechaRec = new Date(rec.fecha + 'T00:00:00');
@@ -159,7 +159,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
   const generarReporteRecargos = () => {
     const recargosFiltrados = filtrarRecargosPorPeriodo();
 
-    const reportePorEmpleado = empleados.map(emp => {
+    const reportePorEmpleado = empleados?.map(emp => {
       const recargosEmp = recargosFiltrados.filter(r => r.empleado_id === emp.id);
 
       const porTipo = {};
@@ -251,10 +251,10 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
             </div>
           ) : (
             <div className="space-y-6">
-              {reporteRecargos.map(reporte => {
+              {reporteRecargos?.map(reporte => {
                 const recargosFiltrados = filtrarRecargosPorPeriodo();
                 const recargosEmpleado = recargosFiltrados.filter(r => r.empleado_id === reporte.empleado.id);
-                const fechasTurnos = [...new Set(recargosEmpleado.map(r => r.fecha))].sort();
+                const fechasTurnos = [...new Set(recargosEmpleado?.map(r => r.fecha))].sort();
 
                 return (
                   <div key={reporte.empleado.id} className="bg-white rounded-lg shadow overflow-hidden">
@@ -276,7 +276,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                     </div>
                     <div className="bg-blue-50 border-b border-blue-100 px-4 py-2">
                       <p className="text-sm text-blue-900">
-                        <strong>📅 Fechas de turnos:</strong> {fechasTurnos.map(f => new Date(f + 'T00:00:00').toLocaleDateString('es-CO', { day: '2-digit', month: 'short' })).join(', ')}
+                        <strong>📅 Fechas de turnos:</strong> {fechasTurnos?.map(f => new Date(f + 'T00:00:00').toLocaleDateString('es-CO', { day: '2-digit', month: 'short' })).join(', ')}
                       </p>
                     </div>
                     <div className="p-4">

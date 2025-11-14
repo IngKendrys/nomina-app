@@ -137,7 +137,7 @@ export default function EmpleadoPage({loading, empleados, setLoading, cargarEmpl
             </tr>
           </thead>
           <tbody className="divide-y">
-            {empleados.map((emp) => (
+            {empleados?.map((emp) => (
               <tr key={emp.id}>
                 {editando === emp.id ? (
                   <>
