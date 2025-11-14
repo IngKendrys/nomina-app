@@ -402,7 +402,7 @@ export default function RecargoPage({ empleados, loading, recargos, cargarRecarg
             ))}
           </tbody>
         </table>
-        {recargos.length === 0 && (
+        {recargos?.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             No hay turnos registrados. Registra el primero arriba.
           </div>

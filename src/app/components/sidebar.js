@@ -14,7 +14,7 @@ export default function Sidebar({ setVista, empleados, vista, setMenuRecargosAbi
                     <Users size={20} />
                     <span>Empleados</span>
                     <span className="ml-auto bg-blue-700 px-2 py-1 rounded text-xs">
-                        {empleados.length}
+                        {empleados?.length}
                     </span>
                 </button>
 

@@ -121,7 +121,7 @@ const generarPDF = (reporteRecargos, filtroMes, periodoReporte) => {
     footStyles: { fillColor: [34, 197, 94], fontStyle: 'bold' },
     alternateRowStyles: { fillColor: [245, 247, 250] },
     didParseCell: function (data) {
-      if (data.row.index === tableData.length - 1) {
+      if (data.row.index === tableData?.length - 1) {
         data.cell.styles.fillColor = [34, 197, 94];
         data.cell.styles.textColor = [255, 255, 255];
         data.cell.styles.fontStyle = 'bold';
@@ -184,7 +184,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
         porTipo,
         horasTotales,
         valorTotal,
-        cantidadTurnos: recargosEmp.length
+        cantidadTurnos: recargosEmp?.length
       };
     })?.filter(r => r.cantidadTurnos > 0);
 
@@ -214,7 +214,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
             <option value="quincena1">Primera Quincena (1-15)</option>
             <option value="quincena2">Segunda Quincena (16-30/31)</option>
           </select>
-          {filtroMes && reporteRecargos.length > 0 && (
+          {filtroMes && reporteRecargos?.length > 0 && (
             <button
               onClick={() => generarPDF(reporteRecargos, filtroMes, periodoReporte)}
               className="bg-red-600 text-white rounded px-4 py-2 hover:bg-red-700 flex items-center gap-2 font-semibold"
@@ -245,7 +245,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
             </p>
           </div>
 
-          {reporteRecargos.length === 0 ? (
+          {reporteRecargos?.length === 0 ? (
             <div className="bg-white rounded-lg shadow p-8 text-center text-gray-500">
               No hay recargos registrados en este periodo
             </div>
@@ -318,7 +318,7 @@ export default function ReportePage({ filtroMes, recargos, empleados, periodoRep
                 <div className="grid grid-cols-3 gap-6">
                   <div>
                     <p className="text-green-100 text-sm">Total Empleados</p>
-                    <p className="text-3xl font-bold">{reporteRecargos.length}</p>
+                    <p className="text-3xl font-bold">{reporteRecargos?.length}</p>
                   </div>
                   <div>
                     <p className="text-green-100 text-sm">Total Horas</p>

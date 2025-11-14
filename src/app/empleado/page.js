@@ -229,7 +229,7 @@ export default function EmpleadoPage({loading, empleados, setLoading, cargarEmpl
             ))}
           </tbody>
         </table>
-        {empleados.length === 0 && (
+        {empleados?.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             No hay empleados registrados. Agrega el primero arriba.
           </div>

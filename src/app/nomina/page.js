@@ -72,7 +72,7 @@ export default function NominaPage({empleados, recargos}) {
             </tr>
           </tfoot>
         </table>
-        {nomina.length === 0 && (
+        {nomina?.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             No hay empleados en la nómina.
           </div>
