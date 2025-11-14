@@ -1,7 +1,7 @@
-export default function NominaPage({empleados}) {
+export default function NominaPage({empleados, recargos}) {
   const calcularNomina = () => {
-    return empleados.map(emp => {
-      const recargosEmpleado = recargos.filter(r => r.empleado_id === emp.id);
+    return empleados?.map(emp => {
+      const recargosEmpleado = recargos?.filter(r => r.empleado_id === emp.id);
       const totalRecargos = recargosEmpleado.reduce((sum, r) => sum + parseFloat(r.valor_calculado), 0);
       return {
         ...emp,
@@ -12,7 +12,7 @@ export default function NominaPage({empleados}) {
   };
 
   const nomina = calcularNomina();
-  const totalGeneral = nomina.reduce((sum, n) => sum + n.total_pagar, 0);
+  const totalGeneral = nomina?.reduce((sum, n) => sum + n.total_pagar, 0);
 
   return (
     <div>
@@ -40,7 +40,7 @@ export default function NominaPage({empleados}) {
             </tr>
           </thead>
           <tbody className="divide-y">
-            {nomina.map((emp) => (
+            {nomina?.map((emp) => (
               <tr key={emp.id}>
                 <td className="px-6 py-4 text-sm text-gray-900 font-medium">
                   {emp.nombre}

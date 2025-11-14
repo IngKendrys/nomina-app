@@ -17,8 +17,6 @@ export default function SistemaNomina() {
   const [filtroMes, setFiltroMes] = useState('');
   const [periodoReporte, setPeriodoReporte] = useState('mes');
 
-
-  
   const cargarEmpleados = async () => {
     const { data, error } = await supabase
       .from("empleados")
@@ -61,7 +59,7 @@ export default function SistemaNomina() {
         )}
 
         {vista === 'nomina' && (
-          <NominaPage empleados={empleados}/>
+          <NominaPage empleados={empleados} recargos={recargos}/>
         )}
       </div>
     </div>
